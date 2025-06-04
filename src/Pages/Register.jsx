@@ -1,9 +1,72 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import RegImg from '../../src/assets/Register/Animation - 1748787229109.json'
 import Lottie from 'lottie-react';
-import { Link } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import { FcGoogle } from 'react-icons/fc';
+import { AuthContext } from '../AuthContext';
+import { updateProfile } from 'firebase/auth';
+import Swal from 'sweetalert2';
+
 const Register = () => {
+    const { createUser, setUser, setLoading } = useContext(AuthContext);
+    const [error, setError] = useState('');
+    const location = useLocation();
+    const navigate = useNavigate();
+    const handleRegister = (e) => {
+        e.preventDefault();
+        setLoading(true)
+        const form = e.target;
+        const formData = new FormData(form);
+        const { name, photo, email, password } = Object.fromEntries(formData.entries());
+
+        setError('');
+        const Upass = /[A-Z]/.test(password);
+        const Lpass = /[a-z]/.test(password);
+        const Num = /\d/.test(password);
+        const Length = password.length >= 6;
+        if (!Upass) {
+            setError("At least one Uppercase letter!");
+            return;
+        }
+        if (!Lpass) {
+            setError("At least one Lowercase letter!");
+            return;
+        }
+        if (!Num) {
+            setError("Password must contain at least one number!");
+            return;
+        }
+        if (!Length) {
+            setError('at least 6 characters password! ')
+            return;
+        }
+        createUser(email, password)
+            .then(result => {
+                const user = result.user;
+                setUser(user);
+
+
+                updateProfile(result.user, { displayName: name, photoURL: photo })
+                    .then(() => {
+                        setUser({ ...result.user, displayName: name, photoURL: photo });
+                        navigate(`${location.state ? location.state : '/'}`);
+                        Swal.fire({
+
+                            icon: "success",
+                            title: "Your account is created",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+
+                    })
+                    .catch(error => {
+                        console.log(error.message)
+                    });
+            }).catch(error => {
+                console.log(error.message)
+            }).finally(() => setLoading(false));
+
+    }
     return (
         <div className="max-w-11/12 mx-auto min-h-[calc(100vh-454px)]  ">
             <div className="flex w-full min-h-[calc(100vh-454px)] items-center justify-center   shadow-lg rounded-lg overflow-hidden my-5 lg:my-0">
@@ -17,7 +80,7 @@ const Register = () => {
                 <div className="w-full h-full mx-auto lg:w-1/2 p-8 md:p-12">
                     <h3 className="text-2xl font-bold text-base-content mb-6">Create an Account</h3>
 
-                    <form className="space-y-6">
+                    <form onSubmit={handleRegister} className="space-y-6">
                         <div>
                             <label className="block text-sm mb-2">Full Name</label>
                             <input
@@ -61,7 +124,9 @@ const Register = () => {
                             />
                         </div>
                         <div>
-
+                            {
+                                error && <p className='text-sm text-red-500'>{error}</p>
+                            }
                         </div>
                         <button
                             type="submit"

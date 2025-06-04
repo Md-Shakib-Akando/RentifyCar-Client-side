@@ -13,6 +13,7 @@ import Home from './Pages/Home.jsx';
 import AvailableCars from './Pages/AvailableCars.jsx';
 import Login from './Pages/LogIn.jsx';
 import Register from './Pages/Register.jsx';
+import AuthProvider from './AuthProvider.jsx';
 
 const router = createBrowserRouter([
   {
@@ -41,6 +42,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router}></RouterProvider>
+    <AuthProvider>
+      <RouterProvider router={router}></RouterProvider>
+    </AuthProvider>
   </StrictMode>,
 )
