@@ -5,7 +5,7 @@ import { Link } from 'react-router';
 import logImg from '../../src/assets/Login/Animation - 1749031514792.json'
  const Login = () => {
     return (
-        <div className="  min-h-[calc(100vh-454px)] ">
+        <div className=" max-w-11/12 mx-auto min-h-[calc(100vh-454px)] ">
                 <div className="flex min-h-[calc(100vh-454px)]  w-full items-center justify-center   shadow-lg rounded-lg overflow-hidden my-5 lg:my-0 ">
 
                     <div className="hidden lg:block w-1/2 relative">
@@ -97,7 +97,7 @@ import logImg from '../../src/assets/Login/Animation - 1749031514792.json'
                             <div className="text-center mt-4">
                                 <p className="text-lg">
                                     Don't have an account?{" "}
-                                    <Link to="/register" className="text-green-600 hover:underline">
+                                    <Link to="/register" className="text-orange-500 hover:underline">
                                         Register
                                     </Link>
                                 </p>
