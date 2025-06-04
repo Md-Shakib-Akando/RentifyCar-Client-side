@@ -1,10 +1,23 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router';
+import { AuthContext } from '../../AuthContext';
 
 const Navbar = () => {
-    const link=<>
-    <li><NavLink to='/' className='text-sm md:text-lg'>Home</NavLink></li>
-    <li><NavLink to='/availableCars' className='text-sm md:text-lg'>Available Cars</NavLink></li>
+    const { user } = useContext(AuthContext);
+    const link = <>
+
+        {
+            user ? <>
+                <li><NavLink to='/' className='text-sm md:text-lg'>Home</NavLink></li>
+                <li><NavLink to='/availableCars' className='text-sm md:text-lg'>Available Cars</NavLink></li>
+                <li><NavLink to='/addCar' className='text-sm md:text-lg'>Add Car</NavLink></li>
+                <li><NavLink to='/myCars' className='text-sm md:text-lg'>My Cars</NavLink></li>
+                <li><NavLink to='/myBookings' className='text-sm md:text-lg'>My Booking</NavLink></li>
+            </> : <>
+                <li><NavLink to='/' className='text-sm md:text-lg'>Home</NavLink></li>
+                <li><NavLink to='/availableCars' className='text-sm md:text-lg'>Available Cars</NavLink></li>
+            </>
+        }
     </>
     return (
         <div className='bg-base-100 shadow-sm'>
@@ -18,6 +31,7 @@ const Navbar = () => {
                             tabIndex={0}
                             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2  shadow">
                             {link}
+                            <button className="btn  btn-outline outline-green-600 text-green-600 hover:bg-green-600 hover:text-white">Log Out</button>
                         </ul>
                     </div>
                     <div className='flex  items-center'>
@@ -30,9 +44,29 @@ const Navbar = () => {
                         {link}
                     </ul>
                 </div>
+
                 <div className="navbar-end">
-                   <Link to='/login'><button className="btn btn-outline text-orange-500 hover:bg-orange-500 hover:text-white">Log In</button></Link>
+                    {
+                        user ? (<div className='flex gap-1'>
+                            {
+                                user.photoURL ? <img
+                                    src={user.photoURL}
+                                    alt="Profile"
+                                    className="w-10 h-10 rounded-full border-2 border-blue-500"
+
+                                /> : <CgProfile size={32} />
+                            } <div>
+                                <button className="btn hidden lg:flex btn-outline outline-green-600 text-green-600 hover:bg-green-600 hover:text-white">Log Out</button>
+
+                            </div>
+                        </div>) : (<>
+                            <div >
+                                <Link to='/login'><button className="btn btn-outline text-orange-500 hover:bg-orange-500 hover:text-white">Log In</button></Link>
+                            </div>
+                        </>)
+                    }
                 </div>
+
             </div>
         </div>
     );

@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FaFacebook, FaInstagram, FaLinkedin, FaYoutube } from 'react-icons/fa';
 import { Link, NavLink } from 'react-router';
+import { AuthContext } from '../../AuthContext';
 
 
 const Footer = () => {
+    const { user } = useContext(AuthContext);
     return (
         <footer className="bg-base-300 text-base-content py-10  ">
-            <div className="max-w-11/12 mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
+            <div className="max-w-11/12 mx-auto px-4 flex flex-col md:flex-row justify-between ">
                 <div className="mb-4 md:mb-0">
                     <div className='flex justify-center md:justify-start items-center gap-1 mb-2'>
                         <img className='h-[40%] w-[40%]' src='/logo.png' alt="" />
@@ -15,29 +17,39 @@ const Footer = () => {
                     </div>
                     <p className='my-3 text-center md:text-start'>Your trusted partner for convenient and reliable car rentals. <br className='hidden md:flex' /> Explore our seamless booking experience tailored to your needs.</p>
                     <div className="flex justify-center md:justify-start space-x-4">
-                       <Link to='https://www.facebook.com/sha.kib.493731'> <FaFacebook className='text-orange-500 cursor-pointer' size={24}></FaFacebook></Link>
+                        <Link to='https://www.facebook.com/sha.kib.493731'> <FaFacebook className='text-orange-500 cursor-pointer' size={24}></FaFacebook></Link>
                         <Link to='https://www.linkedin.com/in/md-shakib-akando-b1a84533b/'><FaLinkedin className='text-orange-500 cursor-pointer' size={24}></FaLinkedin></Link>
                         <Link to='/'><FaInstagram className='text-orange-500 cursor-pointer' size={24}></FaInstagram></Link>
                         <Link to='https://www.youtube.com/'><FaYoutube className='text-orange-500 cursor-pointer' size={24}></FaYoutube></Link>
-                        
-                        
+
+
                     </div>
 
                 </div>
                 <div className="mb-4 md:mb-0">
                     <h1 className='text-xl text-center text-orange-500 font-semibold mb-2'>Quick Link</h1>
-                    <div className='flex flex-col'>
-                        <NavLink to='/' className='text-sm text-center  rounded-md md:text-lg'>Home</NavLink>
-                        <NavLink to='/availableCars' className='text-sm  text-center md:text-lg rounded-md'>Available Cars</NavLink>
+                    <div className='flex flex-col text-center'>
+                        {
+                            user ? <>
+                                <NavLink to='/' className='text-sm rounded-sm md:text-lg'>Home</NavLink>
+                                <NavLink to='/availableCars' className='text-sm md:text-lg rounded-sm'>Available Cars</NavLink>
+                                <NavLink to='/addCar' className='text-sm  rounded-sm md:text-lg'>Add Car</NavLink>
+                                <NavLink to='/myCars' className='text-sm rounded-sm  md:text-lg'>My Cars</NavLink>
+                                <NavLink to='/myBookings' className='text-sm rounded-sm md:text-lg'>My Booking</NavLink>
+                            </> : <>
+                                <NavLink to='/' className='text-sm rounded-sm md:text-lg'>Home</NavLink>
+                                <NavLink to='/availableCars' className='text-sm rounded-sm md:text-lg'>Available Cars</NavLink>
+                            </>
+                        }
                     </div>
                 </div>
                 <div className="mb-4 md:mb-0">
                     <h1 className='text-xl text-center text-orange-500 font-semibold mb-2'>Our services</h1>
-                    <div className='flex flex-col gap-2'>
-                       <p>Business Rental</p>
-                       <p>Airport Transfer</p>
-                       <p>Luxury Rental</p>
-                       <p>Travel Rental</p>
+                    <div className='flex flex-col text-lg gap-2'>
+                        <p>Business Rental</p>
+                        <p>Airport Transfer</p>
+                        <p>Luxury Rental</p>
+                        <p>Travel Rental</p>
                     </div>
                 </div>
                 <div className="mb-4 text-center md:text-start md:mb-0">
