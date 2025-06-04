@@ -11,6 +11,8 @@ import {
 import RootLayout from './Route/RootLayout.jsx';
 import Home from './Pages/Home.jsx';
 import AvailableCars from './Pages/AvailableCars.jsx';
+import Login from './Pages/LogIn.jsx';
+import Register from './Pages/Register.jsx';
 
 const router = createBrowserRouter([
   {
@@ -25,6 +27,14 @@ const router = createBrowserRouter([
         path:'availableCars',
         Component:AvailableCars,
       },
+      {
+        path:'login',
+        Component: Login,
+      },
+      {
+        path:'register',
+        Component: Register,
+      }
     ]
   },
 ]);

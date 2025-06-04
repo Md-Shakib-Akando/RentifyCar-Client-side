@@ -1,5 +1,6 @@
 import React from 'react';
-import { NavLink } from 'react-router';
+import { FaFacebook, FaInstagram, FaLinkedin, FaYoutube } from 'react-icons/fa';
+import { Link, NavLink } from 'react-router';
 
 
 const Footer = () => {
@@ -14,15 +15,20 @@ const Footer = () => {
                     </div>
                     <p className='my-3 text-center md:text-start'>Your trusted partner for convenient and reliable car rentals. <br className='hidden md:flex' /> Explore our seamless booking experience tailored to your needs.</p>
                     <div className="flex justify-center md:justify-start space-x-4">
-
+                       <Link to='https://www.facebook.com/sha.kib.493731'> <FaFacebook className='text-orange-500 cursor-pointer' size={24}></FaFacebook></Link>
+                        <Link to='https://www.linkedin.com/in/md-shakib-akando-b1a84533b/'><FaLinkedin className='text-orange-500 cursor-pointer' size={24}></FaLinkedin></Link>
+                        <Link to='/'><FaInstagram className='text-orange-500 cursor-pointer' size={24}></FaInstagram></Link>
+                        <Link to='https://www.youtube.com/'><FaYoutube className='text-orange-500 cursor-pointer' size={24}></FaYoutube></Link>
+                        
+                        
                     </div>
 
                 </div>
                 <div className="mb-4 md:mb-0">
                     <h1 className='text-xl text-center text-orange-500 font-semibold mb-2'>Quick Link</h1>
-                    <div className='flex flex-col gap-2'>
-                        <NavLink to='/' className='text-sm text-center p-1 rounded-md md:text-lg'>Home</NavLink>
-                        <NavLink to='/availableCars' className='text-sm p-1 text-center md:text-lg rounded-md'>Available Cars</NavLink>
+                    <div className='flex flex-col'>
+                        <NavLink to='/' className='text-sm text-center  rounded-md md:text-lg'>Home</NavLink>
+                        <NavLink to='/availableCars' className='text-sm  text-center md:text-lg rounded-md'>Available Cars</NavLink>
                     </div>
                 </div>
                 <div className="mb-4 md:mb-0">
