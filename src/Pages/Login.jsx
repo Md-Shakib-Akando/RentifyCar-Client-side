@@ -46,7 +46,7 @@ import Swal from 'sweetalert2';
         googleLogIn()
          .then(result => {
                 const user = result.user;
-
+                
                 setUser(user)
                   navigate(`${location.state ? location.state : '/'}`);
                 Swal.fire({
