@@ -1,9 +1,30 @@
 import React, { useContext } from 'react';
-import { Link, NavLink } from 'react-router';
+import { Link, NavLink, useNavigate } from 'react-router';
 import { AuthContext } from '../../AuthContext';
+import Swal from 'sweetalert2';
 
 const Navbar = () => {
-    const { user } = useContext(AuthContext);
+    const { user, LogOut, setUser } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const handleLogOut = () => {
+        LogOut()
+            .then(result => {
+                console.log(result)
+                Swal.fire({
+
+                    icon: "success",
+                    title: "LogOut successful.",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                setUser(null);
+
+
+                navigate('/login')
+            }).catch(error => {
+                console.log(error)
+            })
+    }
     const link = <>
 
         {
@@ -31,7 +52,16 @@ const Navbar = () => {
                             tabIndex={0}
                             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2  shadow">
                             {link}
-                            <button className="btn  btn-outline outline-green-600 text-green-600 hover:bg-green-600 hover:text-white">Log Out</button>
+                            {
+                                user && (
+                                    <button
+                                        onClick={handleLogOut}
+                                        className="btn btn-outline outline-green-600 text-green-600 hover:bg-green-600 hover:text-white mt-2"
+                                    >
+                                        Log Out
+                                    </button>
+                                )
+                            }
                         </ul>
                     </div>
                     <div className='flex  items-center'>
@@ -56,12 +86,14 @@ const Navbar = () => {
 
                                 /> : <CgProfile size={32} />
                             } <div>
-                                <button className="btn hidden lg:flex btn-outline outline-green-600 text-green-600 hover:bg-green-600 hover:text-white">Log Out</button>
+                                <button onClick={handleLogOut} className="btn hidden lg:flex btn-outline outline-green-600 text-green-600 hover:bg-green-600 hover:text-white">Log Out</button>
 
                             </div>
                         </div>) : (<>
                             <div >
-                                <Link to='/login'><button className="btn btn-outline text-orange-500 hover:bg-orange-500 hover:text-white">Log In</button></Link>
+                                <Link to='/login'><button
+
+                                    className="btn btn-outline text-orange-500 hover:bg-orange-500 hover:text-white">Log In</button></Link>
                             </div>
                         </>)
                     }

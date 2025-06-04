@@ -45,7 +45,7 @@ const Footer = () => {
                 </div>
                 <div className="mb-4 md:mb-0">
                     <h1 className='text-xl text-center text-orange-500 font-semibold mb-2'>Our services</h1>
-                    <div className='flex flex-col text-lg gap-2'>
+                    <div className='flex flex-col text-center  text-lg gap-2'>
                         <p>Business Rental</p>
                         <p>Airport Transfer</p>
                         <p>Luxury Rental</p>
