@@ -8,7 +8,7 @@ import { updateProfile } from 'firebase/auth';
 import Swal from 'sweetalert2';
 
 const Register = () => {
-    const { createUser, setUser, setLoading } = useContext(AuthContext);
+    const { createUser,googleLogIn, setUser, setLoading } = useContext(AuthContext);
     const [error, setError] = useState('');
     const location = useLocation();
     const navigate = useNavigate();
@@ -67,6 +67,25 @@ const Register = () => {
             }).finally(() => setLoading(false));
 
     }
+    const handleGoogleRegister=()=>{
+            googleLogIn()
+             .then(result => {
+                    const user = result.user;
+    
+                    setUser(user)
+                      navigate(`${location.state ? location.state : '/'}`);
+                    Swal.fire({
+    
+                        icon: "success",
+                        title: "LogIn successful.",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                  
+                }).catch(error => {
+                    console.log(error)
+                })
+        }
     return (
         <div className="max-w-11/12 mx-auto min-h-[calc(100vh-454px)]  ">
             <div className="flex w-full min-h-[calc(100vh-454px)] items-center justify-center   shadow-lg rounded-lg overflow-hidden my-5 lg:my-0">
@@ -148,7 +167,7 @@ const Register = () => {
 
                         <button
                             type="button"
-
+                            onClick={handleGoogleRegister}
                             className="flex  w-full items-center justify-center px-4 py-3 border border-green-600 text-green-600 rounded-lg hover:bg-green-600 cursor-pointer hover:text-white !rounded-button whitespace-nowrap"
                         >
                             <FcGoogle size={32} className='mr-5'></FcGoogle>

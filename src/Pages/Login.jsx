@@ -1,9 +1,67 @@
  import Lottie from 'lottie-react';
-import React from 'react';
+import React, { useContext } from 'react';
 import { FcGoogle } from 'react-icons/fc';
-import { Link } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import logImg from '../../src/assets/Login/Animation - 1749031514792.json'
+import { AuthContext } from '../AuthContext';
+import Swal from 'sweetalert2';
  const Login = () => {
+    const {logIn,googleLogIn,setUser,setLoading}=useContext(AuthContext);
+    const location=useLocation();
+    const navigate=useNavigate();
+    const handleLogIn=e=>{
+        e.preventDefault();
+        setLoading(true);
+        const form = e.target;
+        const formData = new FormData(form);
+        const { email, password } = Object.fromEntries(formData.entries());
+        logIn(email, password)
+            .then(result => {
+                const user = result.user;
+                setUser(user);
+                Swal.fire({
+
+                    icon: "success",
+                    title: "LogIn successful.",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                navigate(`${location.state ? location.state : '/'}`);
+            }).catch(error => {
+                console.error(error);
+
+                Swal.fire({
+
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Invalid email or password",
+
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }).finally(() => setLoading(false));
+    }
+
+    const handleGoogleLogIn=()=>{
+        googleLogIn()
+         .then(result => {
+                const user = result.user;
+
+                setUser(user)
+                  navigate(`${location.state ? location.state : '/'}`);
+                Swal.fire({
+
+                    icon: "success",
+                    title: "LogIn successful.",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+              
+            }).catch(error => {
+                console.log(error)
+            })
+    }
+
     return (
         <div className=" max-w-11/12 mx-auto min-h-[calc(100vh-454px)] ">
                 <div className="flex min-h-[calc(100vh-454px)]  w-full items-center justify-center   shadow-lg rounded-lg overflow-hidden my-5 lg:my-0 ">
@@ -18,7 +76,7 @@ import logImg from '../../src/assets/Login/Animation - 1749031514792.json'
                     <div className="w-full h-full mx-auto lg:w-1/2 p-8 md:p-12">
                         <h3 className="text-3xl  font-bold text-base-content mb-8">Log In</h3>
 
-                        <form  className="space-y-6">
+                        <form onSubmit={handleLogIn} className="space-y-6">
 
 
                             <div>
@@ -86,7 +144,7 @@ import logImg from '../../src/assets/Login/Animation - 1749031514792.json'
 
                             <button
                                 type="button"
-                                
+                                onClick={handleGoogleLogIn}
                                 className="flex  w-full items-center justify-center px-4 py-3 border border-green-600 text-green-600 rounded-lg hover:bg-green-600 cursor-pointer hover:text-white !rounded-button whitespace-nowrap"
                             >
                                 <FcGoogle size={32} className='mr-5'></FcGoogle>
