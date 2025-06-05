@@ -15,7 +15,7 @@ const WhyChoose = () => {
                         className='flex flex-col  p-4 justify-center items-center inset-shadow-sm border-b-4 border-t-4 border-pink-400 rounded-xl'
                         initial={{ rotateY: 180 }}
                         whileInView={{ rotateY: 360 }}
-                        transition={{ duration: 1 }}
+                        transition={{ duration: 1, }}
                         viewport={{ once: true }}
                         style={{ perspective: 1000 }}
                     >
@@ -34,7 +34,7 @@ const WhyChoose = () => {
                         className='flex flex-col  p-4 justify-center items-center inset-shadow-sm border-b-4 border-t-4 border-emerald-500 rounded-xl'
                         initial={{ rotateY: 180 }}
                         whileInView={{ rotateY: 360 }}
-                        transition={{ duration: 1 }}
+                        transition={{ duration: 1,delay:0.2 }}
                         viewport={{ once: true }}
                         style={{ perspective: 1000 }}
 
@@ -54,7 +54,7 @@ const WhyChoose = () => {
                     <motion.div className='flex flex-col  p-4 justify-center items-center  border-b-4 border-t-4 border-indigo-500 rounded-xl'
                         initial={{ rotateY: 180 }}
                         whileInView={{ rotateY: 360 }}
-                        transition={{ duration: 1 }}
+                        transition={{ duration: 1,delay:0.3 }}
                         viewport={{ once: true }}
                         style={{ perspective: 1000 }}
                     >
@@ -72,7 +72,7 @@ const WhyChoose = () => {
                     <motion.div className='flex flex-col  p-4 justify-center items-center inset-shadow-sm border-b-4 border-t-4 border-yellow-400 rounded-xl'
                         initial={{ rotateY: 180 }}
                         whileInView={{ rotateY: 360 }}
-                        transition={{ duration: 1 }}
+                        transition={{ duration: 1,delay:0.4 }}
                         viewport={{ once: true }}
                         style={{ perspective: 1000 }}
                     >
