@@ -1,10 +1,22 @@
 
-import React from 'react';
-import { Link, useLoaderData } from 'react-router';
+import React, { useEffect, useState } from 'react';
+import { Link} from 'react-router';
 import Cars from '../Components/Car/Cars';
 
 const MyCars = () => {
-    const cars = useLoaderData();
+    
+    const [cars, setCars] = useState([]);
+    const [sortOption, setSortOption] = useState('');
+    useEffect(() => {
+        const url = sortOption
+            ? `http://localhost:3000/sorted-cars?sort=${sortOption}`
+            : `http://localhost:3000/cars`;
+
+        fetch(url)
+            .then((res) => res.json())
+            .then((data) => setCars(data))
+            
+    }, [sortOption]);
     return (
         <>
             <div className='max-w-11/12 mx-auto'>
@@ -15,15 +27,16 @@ const MyCars = () => {
                                 <div className="flex items-center justify-end mt-8">
                                     <h1 className='text-xl font-semibold mr-5'>Sort by: </h1>
                                     <select
-
+                                        value={sortOption}
+                                        onChange={(e) => setSortOption(e.target.value)}
 
                                         className="select select-bordered"
                                     >
                                         <option value="" disabled>
                                             -- Select Sort Option --
                                         </option>
-                                        <option value="careLevel">Price(Lowest First)</option>
-                                        <option value="nextWatering">Price(Highest First)</option>
+                                        <option value="asc">Price(Lowest First)</option>
+                                        <option value="desc">Price(Highest First)</option>
                                     </select>
                                 </div>
 
