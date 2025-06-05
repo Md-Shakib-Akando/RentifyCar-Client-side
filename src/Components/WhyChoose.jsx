@@ -13,7 +13,7 @@ const WhyChoose = () => {
                 <div className='grid grid-cols-1 md:grid-cols-2  xl:grid-cols-4 gap-5'>
                     <motion.div
                         className='flex flex-col  p-4 justify-center items-center inset-shadow-sm border-b-4 border-t-4 border-pink-400 rounded-xl'
-                        initial={{ rotateY: 0 }}
+                        initial={{ rotateY: 180 }}
                         whileInView={{ rotateY: 360 }}
                         transition={{ duration: 1 }}
                         viewport={{ once: true }}
@@ -32,7 +32,7 @@ const WhyChoose = () => {
                     </motion.div>
                     <motion.div
                         className='flex flex-col  p-4 justify-center items-center inset-shadow-sm border-b-4 border-t-4 border-emerald-500 rounded-xl'
-                        initial={{ rotateY: 0 }}
+                        initial={{ rotateY: 180 }}
                         whileInView={{ rotateY: 360 }}
                         transition={{ duration: 1 }}
                         viewport={{ once: true }}
@@ -52,7 +52,7 @@ const WhyChoose = () => {
 
                     </motion.div>
                     <motion.div className='flex flex-col  p-4 justify-center items-center  border-b-4 border-t-4 border-indigo-500 rounded-xl'
-                        initial={{ rotateY: 0 }}
+                        initial={{ rotateY: 180 }}
                         whileInView={{ rotateY: 360 }}
                         transition={{ duration: 1 }}
                         viewport={{ once: true }}
@@ -70,7 +70,7 @@ const WhyChoose = () => {
 
                     </motion.div>
                     <motion.div className='flex flex-col  p-4 justify-center items-center inset-shadow-sm border-b-4 border-t-4 border-yellow-400 rounded-xl'
-                        initial={{ rotateY: 0 }}
+                        initial={{ rotateY: 180 }}
                         whileInView={{ rotateY: 360 }}
                         transition={{ duration: 1 }}
                         viewport={{ once: true }}
