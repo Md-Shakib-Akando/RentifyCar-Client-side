@@ -81,17 +81,17 @@ const AddCar = () => {
 
                             <div>
                                 <label className="block mb-1">Features (e.g., GPS, AC, etc.)</label>
-                                <input type="text" name="features" className="w-full p-2 border border-gray-300 outline-0  rounded" placeholder="Enter features separated by commas" />
+                                <input type="text" name="features" className="w-full p-2 border border-gray-300 outline-0  rounded" placeholder="Enter features separated by commas" required />
                             </div>
 
                             <div>
                                 <label className="block mb-1">Description</label>
-                                <textarea name="description" className="w-full p-2 border border-gray-300 outline-0  rounded" placeholder="Write a brief description..." rows="3"></textarea>
+                                <textarea name="description" className="w-full p-2 border border-gray-300 outline-0  rounded" placeholder="Write a brief description..." required rows="3"></textarea>
                             </div>
 
                             <div>
                                 <label className="block mb-1">Image URL</label>
-                                <input type="url" name="imageUrl" className="w-full p-2 border  border-gray-300 outline-0  rounded" placeholder="Enter image URL" />
+                                <input type="url" name="imageUrl" className="w-full p-2 border  border-gray-300 outline-0  rounded" placeholder="Enter image URL" required />
                             </div>
 
                             <div>

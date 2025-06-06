@@ -4,15 +4,18 @@ import { AuthContext } from '../AuthContext';
 import Swal from 'sweetalert2';
 import { format } from 'date-fns';
 import { MdEdit, MdDelete } from 'react-icons/md';
+import Loading from '../Components/Loading';
 
 const MyCars = () => {
-    const { user } = useContext(AuthContext);
+    const { user,loading,setLoading } = useContext(AuthContext);
     const [allCars, setAllCars] = useState([]);
     const [userCars, setUserCars] = useState([]);
     const [sortOption, setSortOption] = useState('');
     const [carId,setCarId]=useState(null);
+    
 
     useEffect(() => {
+        
         const url = sortOption
             ? `http://localhost:3000/sorted-cars?sort=${sortOption}`
             : `http://localhost:3000/cars`;
@@ -20,7 +23,8 @@ const MyCars = () => {
         fetch(url)
             .then((res) => res.json())
             .then((data) => setAllCars(data));
-    }, [sortOption]);
+            setLoading(false);
+    }, [sortOption,setLoading]);
 
     useEffect(() => {
         if (user?.email) {
@@ -28,6 +32,9 @@ const MyCars = () => {
             setUserCars(filteredCars);
         }
     }, [allCars, user]);
+    if(loading){
+        return <Loading></Loading>
+    }
 
     const handleDelete = (_id) => {
         Swal.fire({
@@ -59,6 +66,7 @@ const MyCars = () => {
         const form = e.target;
         const formData = new FormData(form);
         const updateCar = Object.fromEntries(formData.entries());
+        updateCar.dailyRentalPrice = Number(updateCar.dailyRentalPrice);
 
         fetch(`http://localhost:3000/cars/${carId}`, {
             method: 'PUT',
@@ -200,7 +208,7 @@ const MyCars = () => {
                                     dailyRentalPrice,
 
                                     availability,
-
+                                    location,
                                     imageUrl,
                                     description,
                                     features,
@@ -247,17 +255,17 @@ const MyCars = () => {
 
                                                 <div>
                                                     <label className="block mb-1">Features (e.g., GPS, AC, etc.)</label>
-                                                    <input type="text" name="features" defaultValue={features} className="w-full p-2 border border-gray-300 outline-0  rounded" placeholder="Enter features separated by commas" />
+                                                    <input type="text" name="features" defaultValue={features} className="w-full p-2 border border-gray-300 outline-0  rounded" placeholder="Enter features separated by commas" required />
                                                 </div>
 
                                                 <div>
                                                     <label className="block mb-1">Description</label>
-                                                    <textarea name="description" defaultValue={description} className="w-full p-2 border border-gray-300 outline-0  rounded" placeholder="Write a brief description..." rows="3"></textarea>
+                                                    <textarea name="description" defaultValue={description} className="w-full p-2 border border-gray-300 outline-0  rounded" placeholder="Write a brief description..." rows="3" required></textarea>
                                                 </div>
 
                                                 <div>
                                                     <label className="block mb-1">Image URL</label>
-                                                    <input type="url" name="imageUrl" defaultValue={imageUrl} className="w-full p-2 border  border-gray-300 outline-0  rounded" placeholder="Enter image URL" />
+                                                    <input type="url" name="imageUrl" defaultValue={imageUrl} className="w-full p-2 border  border-gray-300 outline-0  rounded" placeholder="Enter image URL" required />
                                                 </div>
 
                                                 <div>

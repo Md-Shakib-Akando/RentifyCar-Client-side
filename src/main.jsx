@@ -45,8 +45,7 @@ const router = createBrowserRouter([
       },
       {
         path:'myCars',
-        loader:()=>fetch('http://localhost:3000/cars'),
-        hydrateFallbackElement: <Loading></Loading>,
+     
         element:(
           <PrivateRoute><MyCars></MyCars></PrivateRoute>
         )
