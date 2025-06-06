@@ -27,7 +27,7 @@ const RecentCars = ({ car }) => {
 
                         <span className='flex'><h1 className='flex items-center gap-3 text-xl font-semibold'><FaCar className='text-orange-400' size={24}></FaCar>{carModel}</h1></span>
                         <span className='mt-2 mb-1'><h1 className=' flex items-center gap-4 font-medium'><FaSackDollar className='text-orange-400' size={16}></FaSackDollar>Price : ${dailyRentalPrice}/day</h1></span>
-                        <span className='mb-1'><h1 className=' font-medium'>{availability ? (
+                        <span className='mb-1'><h1 className=' font-medium'>{availability=="Available" ? (
                             <>
                                 <span className='flex items-center gap-2'><HiCheckCircle size={20} className='text-green-400'></HiCheckCircle>Available</span>
                             </>
