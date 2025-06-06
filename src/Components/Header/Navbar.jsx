@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router';
 import { AuthContext } from '../../AuthContext';
+import { CgProfile } from 'react-icons/cg';
 import Swal from 'sweetalert2';
 
 const Navbar = () => {

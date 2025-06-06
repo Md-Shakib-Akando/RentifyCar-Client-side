@@ -1,28 +1,46 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link} from 'react-router';
 import Cars from '../Components/Car/Cars';
+import { AuthContext } from '../AuthContext';
 
 const MyCars = () => {
+    const {user}=useContext(AuthContext);
     
-    const [cars, setCars] = useState([]);
+    const [allCars, setAllCars] = useState([]);
+    const [userCars, setUserCars] = useState([]);
     const [sortOption, setSortOption] = useState('');
+    
     useEffect(() => {
         const url = sortOption
             ? `http://localhost:3000/sorted-cars?sort=${sortOption}`
             : `http://localhost:3000/cars`;
-
+        
         fetch(url)
             .then((res) => res.json())
-            .then((data) => setCars(data))
+            .then((data) =>  setAllCars(data))
             
     }, [sortOption]);
+
+    useEffect(() => {
+        if (user?.email ) {
+            const filteredCars = allCars.filter(car => car.userEmail === user.email);
+            setUserCars(filteredCars);
+            
+        }
+    }, [allCars, user]);
     return (
         <>
             <div className='max-w-11/12 mx-auto'>
                 <div className="p-4">
                     {
-                        cars && cars.length > 0 ? (
+                        userCars.length === 0 ? (
+                            <div className='flex flex-col justify-center items-center mt-24'>
+                                <h1 className='text-3xl md:text-5xl font-bold mb-8'>No Cars Found!!</h1>
+                                <p className='text-lg font-medium mb-6'>Go to Add Cars</p>
+                                <Link to='/addCar'><button className='btn bg-orange-500 text-white hover:bg-amber-400'>Add Cars</button></Link>
+                            </div>
+                        ) : (
                             <>
                                 <div className="flex items-center justify-end mt-8">
                                     <h1 className='text-xl font-semibold mr-5'>Sort by: </h1>
@@ -91,15 +109,10 @@ const MyCars = () => {
                                                 </th>
                                             </tr>
                                         </thead>
-                                        {cars.map((car) => <Cars key={car._id} car={car}></Cars>)}
+                                        {userCars.map((car) => <Cars key={car._id} car={car} onDelete={(id) => setUserCars(prev => prev.filter(cr => cr._id !== id))}></Cars>)}
                                     </table>
                                 </div>
                             </>
-                        ) : (
-                            <div className='flex flex-col justify-center items-center mt-24'>
-                                <h1 className='text-3xl '>No Cars Found!!</h1>
-                                <Link to='/addCars'><button className='btn'>Add Cars</button></Link>
-                            </div>
                         )
                     }
                 </div>

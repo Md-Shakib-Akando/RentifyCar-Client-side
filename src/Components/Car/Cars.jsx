@@ -3,9 +3,46 @@ import { Link } from 'react-router';
 import { MdDelete } from "react-icons/md";
 import { MdEdit } from "react-icons/md";
 import { format } from 'date-fns';
-const Cars = ({ car }) => {
+import Swal from 'sweetalert2';
+const Cars = ({ car,onDelete }) => {
     const { _id, createdAt, bookingCount,  imageUrl, availability, dailyRentalPrice, carModel } = car;
     const formattedDate = createdAt? format(new Date(createdAt), 'dd/MM/yyyy') : 'N/A';
+
+    const handleDelete=(_id)=>{
+        console.log(_id)
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+
+                fetch(`http://localhost:3000/cars/${_id}`, {
+                    method: "DELETE"
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.deletedCount) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your plant has been deleted.",
+                                icon: "success"
+                            });
+                            if(onDelete){
+                                onDelete(_id)
+                            }
+                        }
+                        
+                    })
+
+            }
+        });
+    }
     return (
         <tbody className="bg-base-200 divide-y divide-gray-200">
 
@@ -51,7 +88,7 @@ const Cars = ({ car }) => {
                         </Link>
                         <Link>
                             <button
-                                
+                                onClick={()=>handleDelete(_id)}
                                 className='btn text-red-600 border-red-600 hover:bg-red-600 hover:text-white cursor-pointer'>
                                 <MdDelete size={24} />
 

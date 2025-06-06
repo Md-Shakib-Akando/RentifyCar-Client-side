@@ -18,6 +18,7 @@ import PrivateRoute from './Private/PrivateRoute.jsx';
 import MyCars from './Pages/MyCars.jsx';
 import AddCar from './Pages/AddCar.jsx';
 import MyBookings from './Pages/MyBookings.jsx';
+import Loading from './Components/Loading.jsx';
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,7 @@ const router = createBrowserRouter([
       {
         index:true,
         loader:()=>fetch('http://localhost:3000/latest-cars'),
+        hydrateFallbackElement: <Loading></Loading>,
         Component:Home,
       },
       {
@@ -44,6 +46,7 @@ const router = createBrowserRouter([
       {
         path:'myCars',
         loader:()=>fetch('http://localhost:3000/cars'),
+        hydrateFallbackElement: <Loading></Loading>,
         element:(
           <PrivateRoute><MyCars></MyCars></PrivateRoute>
         )
