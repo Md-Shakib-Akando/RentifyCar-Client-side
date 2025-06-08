@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useLoaderData, useParams } from 'react-router';
+import { AuthContext } from '../AuthContext';
+import { format } from 'date-fns';
+import Swal from 'sweetalert2';
 
 const CarDetails = () => {
+    const { user } = useContext(AuthContext);
     const data = useLoaderData();
     const { _id } = useParams();
     const details = data.find((singleData) => singleData._id.toString() === _id);
@@ -9,6 +13,7 @@ const CarDetails = () => {
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
     const [totalPrice, setTotalPrice] = useState(0);
+
 
     const handleDateChange = (start, end) => {
         setStartDate(start);
@@ -27,9 +32,62 @@ const CarDetails = () => {
             }
         }
         else {
-        setTotalPrice(0); 
-    }
+            setTotalPrice(0);
+        }
     };
+
+    const handleBook = () => {
+        if (availability === 'Not Available') {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Car Not Available!",
+
+            });
+            document.getElementById(`modal-${_id}`).close();
+            return;
+
+        }
+
+        const bookingCar = {
+            bookingId: _id,
+            carModel,
+            imageUrl,
+            userEmail: user?.email,
+            bookingDate: format(new Date(), 'dd-MM-yyyy HH:mm'),
+            totalPrice,
+            status: 'confirmed',
+        };
+        fetch(`http://localhost:3000/booking-cars/${_id}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ bookingCar }),
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Car Booking Successfully',
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                    document.getElementById(`modal-${_id}`).close();
+                } else {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Car Booking failed!",
+                        
+                    });
+                    document.getElementById(`modal-${_id}`).close();
+                }
+            })
+            
+
+    }
 
     return (
         <div className='max-w-11/12 min-h-[calc(100vh-438px)] mx-auto py-8'>
@@ -79,14 +137,14 @@ const CarDetails = () => {
                         />
                     </div>
                     <div className="font-semibold text-lg mb-4">
-                         Total Price: ${totalPrice > 0 ? totalPrice : 0}
+                        Total Price: ${totalPrice > 0 ? totalPrice : 0}
                     </div>
                     <div className="modal-action">
                         <form method="dialog">
 
                             <button className="btn bg-gray-400 text-white">Cancel</button>
                         </form>
-                        <Link><button className='btn bg-orange-500 cursor-pointer hover:bg-orange-400 text-white'>Confirm Booking</button></Link>
+                        <Link><button onClick={handleBook} className='btn bg-orange-500 cursor-pointer hover:bg-orange-400 text-white'>Confirm Booking</button></Link>
                     </div>
                 </div>
             </dialog>
