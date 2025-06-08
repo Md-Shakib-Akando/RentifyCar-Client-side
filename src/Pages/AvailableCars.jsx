@@ -125,7 +125,7 @@ const AvailableCars = () => {
                                             </div>
                                         </div>
                                         <div className='w-11/12 mx-auto mb-3'>
-                                            <Link>
+                                            <Link to={`/carDetails/${car._id}`}>
 
                                                 <button className='btn w-full'>Book Now</button>
                                             </Link>
