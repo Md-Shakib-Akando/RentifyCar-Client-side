@@ -5,7 +5,8 @@ import { CgProfile } from 'react-icons/cg';
 import Swal from 'sweetalert2';
 
 const Navbar = () => {
-    const { user, LogOut, setUser } = useContext(AuthContext);
+    const { user, LogOut } = useContext(AuthContext);
+    
     const navigate = useNavigate();
     const handleLogOut = () => {
         LogOut()
@@ -18,7 +19,7 @@ const Navbar = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
-                setUser(null);
+                
 
 
                 navigate('/login')
@@ -78,7 +79,7 @@ const Navbar = () => {
 
                 <div className="navbar-end">
                     {
-                        user ? (<div className='flex gap-1'>
+                        user? (<div className='flex gap-1'>
                             {
                                 user.photoURL ? <img
                                     src={user.photoURL}

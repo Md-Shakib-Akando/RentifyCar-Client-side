@@ -14,6 +14,7 @@ import Swal from 'sweetalert2';
         setLoading(true);
         const form = e.target;
         const formData = new FormData(form);
+        
         const { email, password } = Object.fromEntries(formData.entries());
         logIn(email, password)
             .then(result => {
@@ -45,9 +46,9 @@ import Swal from 'sweetalert2';
     const handleGoogleLogIn=()=>{
         googleLogIn()
          .then(result => {
-                const user = result.user;
+                console.log(result)
                 
-                setUser(user)
+                
                   navigate(`${location.state ? location.state : '/'}`);
                 Swal.fire({
 
