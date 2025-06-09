@@ -55,9 +55,10 @@ const CarDetails = () => {
             imageUrl,
             userEmail: user?.email,
             bookingDate: format(new Date(), 'dd-MM-yyyy HH:mm'),
-            StartDate: format(new Date(), 'dd-MM-yyyy HH:mm'),
-            EndDate: format(new Date(), 'dd-MM-yyyy HH:mm'),
+            StartDate: format(new Date(startDate), 'dd-MM-yyyy HH:mm'),
+            EndDate: format(new Date(endDate), 'dd-MM-yyyy HH:mm'),
             totalPrice,
+            pricePerDay:dailyRentalPrice,
             status: 'confirmed',
         };
         fetch(`http://localhost:3000/booking-cars/${_id}`, {

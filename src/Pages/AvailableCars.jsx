@@ -150,7 +150,7 @@ const AvailableCars = () => {
                                             whileInView={{ opacity: 1, y: 0 }}
                                             transition={{ duration: 1, ease: 'easeOut', delay: 0.2 }}
                                             viewport={{ once: true }}
-                                            className="flex flex-col w-full justify-between rounded-md shadow-md border-1 border-orange-300  dark:bg-gray-50 dark:text-gray-800  hover:cursor-pointer">
+                                            className="overflow-x-auto  flex flex-col w-full justify-between rounded-md shadow-md border-1 border-orange-300  dark:bg-gray-50 dark:text-gray-800  hover:cursor-pointer">
 
                                             <div className='flex items-center gap-10'>
                                                 <img src={car.imageUrl} alt="" className="object-cover object-center w-[30%] h-[20%] rounded-t-md  dark:bg-gray-500" />
