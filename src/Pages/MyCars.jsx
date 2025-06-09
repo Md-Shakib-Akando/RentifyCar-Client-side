@@ -7,15 +7,15 @@ import { MdEdit, MdDelete } from 'react-icons/md';
 import Loading from '../Components/Loading';
 
 const MyCars = () => {
-    const { user,loading,setLoading } = useContext(AuthContext);
+    const { user, loading, setLoading } = useContext(AuthContext);
     const [allCars, setAllCars] = useState([]);
     const [userCars, setUserCars] = useState([]);
     const [sortOption, setSortOption] = useState('');
-    const [carId,setCarId]=useState(null);
-    
+    const [carId, setCarId] = useState(null);
+
 
     useEffect(() => {
-        
+
         const url = sortOption
             ? `http://localhost:3000/sorted-cars?sort=${sortOption}`
             : `http://localhost:3000/cars`;
@@ -23,8 +23,8 @@ const MyCars = () => {
         fetch(url)
             .then((res) => res.json())
             .then((data) => setAllCars(data));
-            setLoading(false);
-    }, [sortOption,setLoading]);
+        setLoading(false);
+    }, [sortOption, setLoading]);
 
     useEffect(() => {
         if (user?.email) {
@@ -32,7 +32,7 @@ const MyCars = () => {
             setUserCars(filteredCars);
         }
     }, [allCars, user]);
-    if(loading){
+    if (loading) {
         return <Loading></Loading>
     }
 
@@ -86,11 +86,11 @@ const MyCars = () => {
                         showConfirmButton: false,
                         timer: 1500
                     });
-                     setAllCars(prev =>
-                    prev.map(car =>
-                        car._id === carId ? { ...car, ...updateCar } : car
-                    )
-                );
+                    setAllCars(prev =>
+                        prev.map(car =>
+                            car._id === carId ? { ...car, ...updateCar } : car
+                        )
+                    );
                 }
             })
 
@@ -102,8 +102,8 @@ const MyCars = () => {
             <div className="p-4">
                 {userCars.length === 0 ? (
                     <div className='flex flex-col justify-center items-center mt-24'>
-                        <h1 className='text-3xl md:text-5xl font-bold mb-8'>No Cars Found!!</h1>
-                        <p className='text-lg font-medium mb-6'>Go to Add Cars</p>
+                        <h1 className='text-3xl md:text-5xl font-bold mb-8'>No cars added yet. Add one now!</h1>
+
                         <Link to='/addCar'>
                             <button className='btn bg-orange-500 text-white hover:bg-amber-400'>Add Cars</button>
                         </Link>
@@ -173,7 +173,7 @@ const MyCars = () => {
                                                 <td className="px-6 py-4 text-center">
                                                     <div className="flex justify-center space-x-4">
                                                         <button
-                                                            
+
                                                             onClick={() => {
                                                                 setCarId(_id);
                                                                 document.getElementById(`modal-${_id}`).showModal()

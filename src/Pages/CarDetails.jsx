@@ -55,6 +55,8 @@ const CarDetails = () => {
             imageUrl,
             userEmail: user?.email,
             bookingDate: format(new Date(), 'dd-MM-yyyy HH:mm'),
+            StartDate: format(new Date(), 'dd-MM-yyyy HH:mm'),
+            EndDate: format(new Date(), 'dd-MM-yyyy HH:mm'),
             totalPrice,
             status: 'confirmed',
         };
