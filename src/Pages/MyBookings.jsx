@@ -6,7 +6,7 @@ import { Link } from 'react-router';
 import { format } from 'date-fns';
 
 const MyBookings = () => {
-    const { user } = useContext(AuthContext);
+    const { user,token } = useContext(AuthContext);
     const [bookings, setBookings] = useState([]);
     const [selectedBooking, setSelectedBooking] = useState(null);
     const [startDate, setStartDate] = useState('');
@@ -14,13 +14,17 @@ const MyBookings = () => {
    
     
     useEffect(() => {
-        if (user?.email) {
-            fetch(`http://localhost:3000/booking-cars?email=${user.email}`)
+        if (user?.email&&token) {
+            fetch(`http://localhost:3000/booking-cars?email=${user.email}`,{
+                headers:{
+                    authorization:`Bearer ${token}`
+                }
+            })
                 .then(res => res.json())
                 .then(data => setBookings(data))
                 .catch(error => console.error('Error fetching bookings:', error));
         }
-    }, [user]);
+    }, [user,token]);
 
     const handleCancel = (id) => {
 

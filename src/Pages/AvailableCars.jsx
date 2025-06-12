@@ -181,7 +181,7 @@ const AvailableCars = () => {
 
                                                 </div>
                                                 <div className='w-[20%] flex justify-center '>
-                                                    <Link>
+                                                    <Link to={`/carDetails/${car._id}`}>
 
                                                         <button className='btn ml-24'>Book Now</button>
                                                     </Link>

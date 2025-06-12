@@ -20,10 +20,12 @@ import AddCar from './Pages/AddCar.jsx';
 import MyBookings from './Pages/MyBookings.jsx';
 import Loading from './Components/Loading.jsx';
 import CarDetails from './Pages/carDetails.jsx';
+import ErrorPage from './Pages/ErrorPage.jsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
+    errorElement:<ErrorPage></ErrorPage>,
     Component:RootLayout,
     children:[
       {
