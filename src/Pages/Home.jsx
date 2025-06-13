@@ -5,6 +5,7 @@ import RecentCars from './RecentCars';
 import { useLoaderData } from 'react-router';
 import OfferSection from '../Components/OfferSection';
 import HowIsWork from '../Components/HowIsWork';
+import Review from '../Components/Review';
 
 const Home = () => {
     const latestCar = useLoaderData();
@@ -24,6 +25,7 @@ const Home = () => {
             </div>
             <HowIsWork></HowIsWork>
             <OfferSection></OfferSection>
+            <Review></Review>
 
         </>
     );

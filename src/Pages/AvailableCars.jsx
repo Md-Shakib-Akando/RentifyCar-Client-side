@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import { HiBookmark, HiCheckCircle, HiMiniXCircle } from 'react-icons/hi2';
 import { FaCar } from 'react-icons/fa';
 import { FaLocationDot, FaSackDollar } from 'react-icons/fa6';
 import { motion } from 'framer-motion';
+import { AuthContext } from '../AuthContext';
+import Loading from '../Components/Loading';
 const AvailableCars = () => {
-
+    const {loading}=useContext(AuthContext)
     const [allCars, setAllCars] = useState([]);
     const [searchTerm, setSearchTerm] = useState(''); 
     const [sortOption, setSortOption] = useState('');
@@ -34,6 +36,9 @@ const AvailableCars = () => {
             .then((res) => res.json())
             .then((data) => setAllCars(data));
     }, [searchTerm]);
+    if (loading) {
+        return <Loading></Loading>
+    }
 
     const handleSearchChange = (e) => {
         setSearchTerm(e.target.value);

@@ -7,35 +7,40 @@ import { MdEdit, MdDelete } from 'react-icons/md';
 import Loading from '../Components/Loading';
 
 const MyCars = () => {
-    const { user, loading, setLoading } = useContext(AuthContext);
+    const { user,  } = useContext(AuthContext);
     const [allCars, setAllCars] = useState([]);
     const [userCars, setUserCars] = useState([]);
     const [sortOption, setSortOption] = useState('');
     const [carId, setCarId] = useState(null);
+    const [loading, setLoading] = useState(false);
 
-
+    
     useEffect(() => {
-
+        setLoading(true)
         const url = sortOption
             ? `http://localhost:3000/sorted-cars?sort=${sortOption}`
             : `http://localhost:3000/cars`;
 
         fetch(url)
             .then((res) => res.json())
-            .then((data) => setAllCars(data));
-        setLoading(false);
-    }, [sortOption, setLoading]);
+            .then((data) => {
+                setAllCars(data)
+                setLoading(false)
+            });
+        
+    }, [sortOption,setLoading]);
 
     useEffect(() => {
         if (user?.email) {
             const filteredCars = allCars.filter(car => car.userEmail === user.email);
             setUserCars(filteredCars);
+            
         }
     }, [allCars, user]);
+    
     if (loading) {
         return <Loading></Loading>
     }
-
     const handleDelete = (_id) => {
         Swal.fire({
             title: "Are you sure?",

@@ -4,27 +4,43 @@ import { MdCalendarMonth, MdDelete } from 'react-icons/md';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router';
 import { format } from 'date-fns';
-
+import Loading from '../Components/Loading';
+import {
+    LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip,
+    ResponsiveContainer
+} from 'recharts';
 const MyBookings = () => {
-    const { user,token } = useContext(AuthContext);
+    const { user, token } = useContext(AuthContext);
     const [bookings, setBookings] = useState([]);
     const [selectedBooking, setSelectedBooking] = useState(null);
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
-   
-    
+    const [loading, setLoading] = useState(false);
+    const data = bookings
+        .filter(book => book.status !== 'Canceled')
+        .map((book, index) => ({
+            name: book.carModel || `Booking ${index + 1}`,
+            price: book.totalPrice,
+        }));
     useEffect(() => {
-        if (user?.email&&token) {
-            fetch(`http://localhost:3000/booking-cars?email=${user.email}`,{
-                headers:{
-                    authorization:`Bearer ${token}`
+        setLoading(true)
+        if (user?.email && token) {
+            fetch(`http://localhost:3000/booking-cars?email=${user.email}`, {
+                headers: {
+                    authorization: `Bearer ${token}`
                 }
             })
                 .then(res => res.json())
-                .then(data => setBookings(data))
+                .then(data => {
+                    setBookings(data)
+                    setLoading(false)
+                })
                 .catch(error => console.error('Error fetching bookings:', error));
         }
-    }, [user,token]);
+    }, [user, token]);
+    if (loading) {
+        return <Loading></Loading>;
+    }
 
     const handleCancel = (id) => {
 
@@ -88,7 +104,7 @@ const MyBookings = () => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 StartDate: formattedStart,
-                EndDate: formattedEnd ,
+                EndDate: formattedEnd,
                 totalPrice: newTotal
             })
         })
@@ -110,6 +126,21 @@ const MyBookings = () => {
     return (
         <div className='max-w-11/12 mx-auto'>
             <div className="overflow-x-auto min-h-[calc(100vh-144px)]">
+                <h1 className='text-3xl font-bold text-center mt-10'>Car Daily Rental Prices Chart</h1>
+                <div className="my-10 flex justify-center">
+
+                    <ResponsiveContainer width="100%" height={300}>
+                        <LineChart data={data} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
+                            <Line type="monotone" dataKey="price" stroke="#8884d8" />
+                            <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+                            <XAxis dataKey="name" />
+                            <YAxis />
+                            <Tooltip />
+                        </LineChart>
+                    </ResponsiveContainer>
+                </div>
+
+
                 <table className="min-w-full my-7 divide-y divide-gray-300">
                     <thead className="bg-base-300">
                         <tr className=" bg-gray-200">
@@ -183,7 +214,7 @@ const MyBookings = () => {
                         <div className="mb-3">
                             <label className="block mb-1">Start Date:</label>
                             <input
-                                type="date"
+                                type="dateTime-local"
                                 className="border w-full p-2 rounded"
                                 value={startDate}
                                 onChange={(e) => setStartDate(e.target.value)}
@@ -193,7 +224,7 @@ const MyBookings = () => {
                         <div className="mb-3">
                             <label className="block mb-1">End Date:</label>
                             <input
-                                type="date"
+                                type="dateTime-local"
                                 className="border w-full p-2 rounded"
                                 value={endDate}
                                 onChange={(e) => setEndDate(e.target.value)}

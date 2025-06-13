@@ -123,7 +123,7 @@ const CarDetails = () => {
                     <div className="mb-3">
                         <label className="block mb-1">Start Date:</label>
                         <input
-                            type="date"
+                            type="dateTime-local"
                             className="border w-full p-2 rounded"
 
                             value={startDate}
@@ -133,7 +133,7 @@ const CarDetails = () => {
                     <div className="mb-3">
                         <label className="block mb-1">End Date:</label>
                         <input
-                            type="date"
+                            type="dateTime-local"
                             className="border w-full p-2 rounded"
                             value={endDate}
                             onChange={(e) => handleDateChange(startDate, e.target.value)}
