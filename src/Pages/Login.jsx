@@ -1,5 +1,5 @@
  import Lottie from 'lottie-react';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { Link, useLocation, useNavigate } from 'react-router';
 import logImg from '../../src/assets/Login/Animation - 1749031514792.json'
@@ -62,6 +62,9 @@ import Swal from 'sweetalert2';
                 console.log(error)
             })
     }
+     useEffect(() => {
+            document.title = 'RentifyCars | LogIn';
+        }, [])
 
     return (
         <div className=" max-w-11/12 mx-auto min-h-[calc(100vh-454px)] ">

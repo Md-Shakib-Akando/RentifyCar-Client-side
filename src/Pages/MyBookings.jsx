@@ -25,7 +25,7 @@ const MyBookings = () => {
     useEffect(() => {
         setLoading(true)
         if (user?.email && token) {
-            fetch(`http://localhost:3000/booking-cars?email=${user.email}`, {
+            fetch(`https://rentify-cars-server-side.vercel.app/booking-cars?email=${user.email}`, {
                 headers: {
                     authorization: `Bearer ${token}`
                 }
@@ -38,6 +38,9 @@ const MyBookings = () => {
                 .catch(error => console.error('Error fetching bookings:', error));
         }
     }, [user, token]);
+     useEffect(() => {
+            document.title = 'RentifyCars | Bookings';
+        }, [])
     if (loading) {
         return <Loading></Loading>;
     }
@@ -53,7 +56,7 @@ const MyBookings = () => {
             cancelButtonText: "No"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:3000/booking-cars/${id}`, {
+                fetch(`https://rentify-cars-server-side.vercel.app/booking-cars/${id}`, {
                     method: 'PATCH',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ status: 'Canceled' })
@@ -99,7 +102,7 @@ const MyBookings = () => {
         const formattedStart = format(start, 'dd-MM-yyyy HH:mm');
         const formattedEnd = format(end, 'dd-MM-yyyy HH:mm');
 
-        fetch(`http://localhost:3000/booking-cars/${selectedBooking._id}`, {
+        fetch(`https://rentify-cars-server-side.vercel.app/booking-cars/${selectedBooking._id}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -122,6 +125,7 @@ const MyBookings = () => {
                 }
             });
     };
+    
 
     return (
         <div className='max-w-11/12 mx-auto'>

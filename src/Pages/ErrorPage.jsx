@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ErrorImg from '../../src/assets/cars/error.png'
 import { Link } from 'react-router';
 import { FaHome } from 'react-icons/fa';
 const ErrorPage = () => {
+   useEffect(() => {
+            document.title = 'RentifyCars | Error';
+        }, [])
     return (
            <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="max-w-2xl mx-auto px-4 text-center">

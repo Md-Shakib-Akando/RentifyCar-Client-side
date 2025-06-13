@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from "framer-motion";
 import { FaCalendar, FaKey, FaSearch } from 'react-icons/fa';
+import { Link } from 'react-router';
 const HowIsWork = () => {
     const fadeInUp = {
         initial: { opacity: 0, y: 40 },
@@ -37,13 +38,13 @@ const HowIsWork = () => {
                         viewport={{ once: true }}
                     >
                         <div
-                            className=" w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mb-6 transition-all duration-300 hover:bg-blue-600 group-hover:shadow-lg text-blue-500 hover:text-white animate-bounce"
+                           className=" w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center mb-6 transition-all duration-300 hover:bg-orange-500 group-hover:shadow-lg text-orange-500 hover:text-white animate-bounce"
                             
                             
                         >
                             <FaSearch size={28}></FaSearch>
                         </div>
-                        <div className="h-1 w-full bg-blue-200 absolute ml-9 top-10 left-1/2 transform -translate-y-1/2 hidden md:block"></div>
+                        <div className="h-1 w-full bg-orange-200 absolute ml-9 top-10 left-1/2 transform -translate-y-1/2 hidden md:block"></div>
                         <h3 className="text-xl font-bold text-gray-900 mb-3">
                             Choose Your Car
                         </h3>
@@ -62,13 +63,13 @@ const HowIsWork = () => {
                         viewport={{ once: true }}
                     >
                         <div
-                            className=" w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mb-6 transition-all duration-300 hover:bg-blue-600 group-hover:shadow-lg text-blue-500 hover:text-white  animate-bounce"
+                           className=" w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center mb-6 transition-all duration-300 hover:bg-orange-500 group-hover:shadow-lg text-orange-500 hover:text-white animate-bounce"
                             
                             
                         >
                             <FaCalendar size={28} ></FaCalendar>
                         </div>
-                        <div className="h-1 w-full bg-blue-200 absolute ml-9 top-10 left-1/2 transform -translate-y-1/2 hidden md:block"></div>
+                        <div className="h-1 w-full bg-orange-200 absolute ml-9 top-10 left-1/2 transform -translate-y-1/2 hidden md:block"></div>
                         <h3 className="text-xl font-bold text-gray-900 mb-3">
                             Book Your Dates
                         </h3>
@@ -87,7 +88,7 @@ const HowIsWork = () => {
                         viewport={{ once: true }}
                     >
                         <div
-                            className=" w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mb-6 transition-all duration-300 hover:bg-blue-600 group-hover:shadow-lg text-blue-500 hover:text-white animate-bounce"
+                            className=" w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center mb-6 transition-all duration-300 hover:bg-orange-500 group-hover:shadow-lg text-orange-500 hover:text-white animate-bounce"
                             
                         >
                             <FaKey size={28} ></FaKey>
@@ -110,12 +111,14 @@ const HowIsWork = () => {
                     whileInView="animate"
                     viewport={{ once: true }}
                 >
+                   <Link to='/availableCars'>
                     <button
-                        className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-md text-lg font-medium transition duration-300 !rounded-button whitespace-nowrap cursor-pointer animate-pulse"
+                        className="bg-orange-400 hover:bg-orange-500 text-white px-8 py-4 rounded-md text-lg font-medium transition duration-300 !rounded-button whitespace-nowrap cursor-pointer animate-pulse"
                         
                     >
                         Start Your Journey Now
                     </button>
+                   </Link>
                 </motion.div>
             </div>
         </section>

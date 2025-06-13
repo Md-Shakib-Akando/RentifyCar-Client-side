@@ -30,7 +30,7 @@ const router = createBrowserRouter([
     children:[
       {
         index:true,
-        loader:()=>fetch('http://localhost:3000/latest-cars'),
+        loader:()=>fetch('https://rentify-cars-server-side.vercel.app/latest-cars'),
         hydrateFallbackElement: <Loading></Loading>,
         Component:Home,
       },
@@ -68,7 +68,7 @@ const router = createBrowserRouter([
       },
       {
         path:'/carDetails/:_id',
-        loader:()=>fetch('http://localhost:3000/cars'),
+        loader:()=>fetch('https://rentify-cars-server-side.vercel.app/cars'),
         hydrateFallbackElement: <Loading></Loading>,
         element:(
           <PrivateRoute><CarDetails></CarDetails></PrivateRoute>

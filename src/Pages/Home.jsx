@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Banner from '../Components/Banner/Banner';
 import WhyChoose from '../Components/WhyChoose';
 import RecentCars from './RecentCars';
@@ -9,6 +9,9 @@ import Review from '../Components/Review';
 
 const Home = () => {
     const latestCar = useLoaderData();
+      useEffect(() => {
+        document.title = 'RentifyCar | Home';
+    }, [])
     return (
         <>
             <Banner></Banner>

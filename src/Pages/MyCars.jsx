@@ -18,8 +18,8 @@ const MyCars = () => {
     useEffect(() => {
         setLoading(true)
         const url = sortOption
-            ? `http://localhost:3000/sorted-cars?sort=${sortOption}`
-            : `http://localhost:3000/cars`;
+            ? `https://rentify-cars-server-side.vercel.app/sorted-cars?sort=${sortOption}`
+            : `https://rentify-cars-server-side.vercel.app/cars`;
 
         fetch(url)
             .then((res) => res.json())
@@ -37,6 +37,9 @@ const MyCars = () => {
             
         }
     }, [allCars, user]);
+     useEffect(() => {
+            document.title = 'RentifyCars | MyCars';
+        }, [])
     
     if (loading) {
         return <Loading></Loading>
@@ -52,7 +55,7 @@ const MyCars = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:3000/cars/${_id}`, {
+                fetch(`https://rentify-cars-server-side.vercel.app/cars/${_id}`, {
                     method: "DELETE"
                 })
                     .then(res => res.json())
@@ -73,7 +76,7 @@ const MyCars = () => {
         const updateCar = Object.fromEntries(formData.entries());
         updateCar.dailyRentalPrice = Number(updateCar.dailyRentalPrice);
 
-        fetch(`http://localhost:3000/cars/${carId}`, {
+        fetch(`https://rentify-cars-server-side.vercel.app/cars/${carId}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

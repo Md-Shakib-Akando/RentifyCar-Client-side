@@ -6,7 +6,7 @@ const OfferSection = () => {
     const [offers, setOffers] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:3000/cars')
+        fetch('https://rentify-cars-server-side.vercel.app/cars')
             .then((res) => res.json())
             .then((data) => {
                 const filtered = data.filter(
@@ -74,7 +74,7 @@ const OfferSection = () => {
                                 <div className="flex justify-between items-center">
                                     <p className="text-gray-900 font-bold">From ${car.dailyRentalPrice}/day</p>
                                     <Link to={`/carDetails/${car._id}`}>
-                                    <button className="bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-indigo-700 transition duration-300 cursor-pointer">
+                                    <button className="bg-gradient-to-r from-orange-500 to-yellow-400 hover:from-orange-600 hover:to-yellow-500 text-white font-semibold text-sm md:text-lg px-5 md:px-8 py-3 rounded-lg shadow-xl transition duration-300  cursor-pointer">
                                         Book Now
                                     </button>
                                     </Link>

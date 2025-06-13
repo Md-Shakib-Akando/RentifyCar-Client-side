@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLoaderData, useParams } from 'react-router';
 import { AuthContext } from '../AuthContext';
 import { format } from 'date-fns';
@@ -9,11 +9,14 @@ const CarDetails = () => {
     const data = useLoaderData();
     const { _id } = useParams();
     const details = data.find((singleData) => singleData._id.toString() === _id);
-    const { imageUrl, description, features, availability, dailyRentalPrice, carModel } = details;
+    const { imageUrl, description, features, availability, dailyRentalPrice, carModel,bookingStatus } = details;
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
     const [totalPrice, setTotalPrice] = useState(0);
 
+     useEffect(() => {
+            document.title = 'RentifyCars | Details';
+        }, [])
 
     const handleDateChange = (start, end) => {
         setStartDate(start);
@@ -59,9 +62,9 @@ const CarDetails = () => {
             EndDate: format(new Date(endDate), 'dd-MM-yyyy HH:mm'),
             totalPrice,
             pricePerDay:dailyRentalPrice,
-            status: 'confirmed',
+            status: bookingStatus,
         };
-        fetch(`http://localhost:3000/booking-cars/${_id}`, {
+        fetch(`https://rentify-cars-server-side.vercel.app/booking-cars/${_id}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -108,7 +111,7 @@ const CarDetails = () => {
                     <p>{description}</p>
                     <div className='mt-5'>
                         <Link>
-                            <button onClick={() => document.getElementById(`modal-${_id}`).showModal()} className='btn w-full'>Book Now</button>
+                            <button onClick={() => document.getElementById(`modal-${_id}`).showModal()} className='btn bg-gradient-to-r from-orange-500 to-yellow-400 hover:from-orange-600 hover:to-yellow-500 text-white font-semibold text-sm md:text-lg px-5 md:px-8 py-3 rounded-lg shadow-xl  w-full'>Book Now</button>
                         </Link>
                     </div>
                 </div>

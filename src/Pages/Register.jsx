@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import RegImg from '../../src/assets/Register/Animation - 1748787229109.json'
 import Lottie from 'lottie-react';
 import { Link, useLocation, useNavigate } from 'react-router';
@@ -12,6 +12,9 @@ const Register = () => {
     const [error, setError] = useState('');
     const location = useLocation();
     const navigate = useNavigate();
+     useEffect(() => {
+            document.title = 'RentifyCars | Register';
+        }, [])
     const handleRegister = (e) => {
         e.preventDefault();
         setLoading(true)

@@ -1,9 +1,12 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { AuthContext } from '../AuthContext';
 import Swal from 'sweetalert2';
 
 const AddCar = () => {
     const { user } = useContext(AuthContext)
+     useEffect(() => {
+            document.title = 'RentifyCars | AddCar';
+        }, [])
     const handleAddCars = e => {
         e.preventDefault();
 
@@ -16,10 +19,11 @@ const AddCar = () => {
             userName: user.displayName,
             userEmail: user.email,
             bookingCount: 0,
+            bookingStatus: 'confirmed',
 
 
         };
-        fetch('http://localhost:3000/cars', {
+        fetch('https://rentify-cars-server-side.vercel.app/cars', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
