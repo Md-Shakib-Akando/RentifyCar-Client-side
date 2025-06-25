@@ -82,4 +82,4 @@ npm run dev
 ```
 ## 🔗 server-side repo link:
 
- https://plants-care-cb29c.web.app
+https://github.com/Md-Shakib-Akando/Rentify-Cars-server-side
