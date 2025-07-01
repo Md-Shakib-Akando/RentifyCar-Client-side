@@ -5,12 +5,12 @@ import { FaStar } from 'react-icons/fa';
 const Review = () => {
     return (
         <>
-            <div className='bg-orange-100 py-10'>
+            <div className='bg-orange-100 dark:bg-base-200 py-10'>
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl font-bold text-gray-800 mb-4">
+                    <h2 className="text-3xl font-bold text-gray-800 dark:text-base-content mb-4">
                         Success Stories
                     </h2>
-                    <p className="text-gray-600 max-w-2xl mx-auto">
+                    <p className="text-gray-600 dark:text-gray-300  max-w-2xl mx-auto">
                         Hear from job seekers who found their perfect career match through
                         Job Track.
                     </p>
@@ -23,7 +23,7 @@ const Review = () => {
 
                                 <div>
                                     <div className='flex gap-2 items-center'>
-                                        <BsPersonCircle size={28} />
+                                        <BsPersonCircle className='dark:text-base-300' size={28} />
                                         <h4 className="text-lg font-bold text-gray-800">
                                             Andrew Blake
                                         </h4>
@@ -56,7 +56,7 @@ const Review = () => {
 
                                 <div>
                                     <div className='flex gap-2 items-center'>
-                                        <BsPersonCircle size={28} />
+                                        <BsPersonCircle className='dark:text-base-300' size={28} />
                                         <h4 className="text-lg font-bold text-gray-800">
                                             Sarah Johnson
                                         </h4>
@@ -89,7 +89,7 @@ const Review = () => {
 
                                 <div>
                                     <div className='flex gap-2 items-center'>
-                                        <BsPersonCircle size={28} />
+                                        <BsPersonCircle className='dark:text-base-300' size={28} />
                                         <h4 className="text-lg font-bold text-gray-800">
                                             Michael Chen
                                         </h4>

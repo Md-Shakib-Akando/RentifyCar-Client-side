@@ -55,9 +55,9 @@ const AddCar = () => {
     }
     return (
         <>
-            <div className='bg-orange-50'>
+            <div className='bg-orange-50 dark:bg-base-200'>
                 <div className='  max-w-11/12 mx-auto min-h-[calc(100vh-845px)] py-10'>
-                    <div className="max-w-xl md:max-w-2xl xl:max-w-6xl mx-auto  bg-blue-50 p-8 rounded-md shadow-md">
+                    <div className="max-w-xl md:max-w-2xl xl:max-w-6xl mx-auto  bg-blue-50 dark:bg-base-100 p-8 rounded-md shadow-md">
                         <h2 className="text-2xl font-bold text-center mb-6">Add New Car</h2>
                         <form onSubmit={handleAddCars} className="space-y-4">
                             <div>

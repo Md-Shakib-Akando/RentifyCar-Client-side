@@ -38,11 +38,11 @@ const OfferSection = () => {
             <div className='max-w-11/12 mx-auto my-7'>
 
                 <div className="text-center mb-12">
-                    <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl relative inline-block">
+                    <h2 className="text-3xl font-extrabold text-gray-900 dark:text-base-content sm:text-4xl relative inline-block">
                         Special Offers
-                        <span className="absolute bottom-0 left-0 w-full h-1 bg-indigo-500 transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></span>
+                        <span className="absolute bottom-0 left-0 w-full h-1 bg-indigo-500 dark:text-base-content transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></span>
                     </h2>
-                    <p className="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
+                    <p className="mt-4 max-w-2xl text-xl text-gray-500 dark:text-gray-300 mx-auto">
                         Take advantage of our limited-time deals and save on your next car
                         rental.
                     </p>

@@ -17,7 +17,7 @@ const RecentCars = ({ car }) => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: 'easeOut', delay:0.2 }}
             viewport={{ once: true }}
-            className=" rounded-md shadow-md border-1 border-orange-300  dark:bg-gray-50 dark:text-gray-800 transition-transform transform hover:scale-105 hover:shadow-xl hover:shadow-amber-50 hover:cursor-pointer">
+            className=" rounded-md shadow-md border-1 border-orange-300  dark:bg-gray-50 dark:text-gray-800 transition-transform transform hover:scale-105 hover:shadow-md hover:shadow-amber-50 hover:cursor-pointer">
 
             <img src={imageUrl} alt="" className="object-cover object-center  rounded-t-md  dark:bg-gray-500" />
             <div className="p-3">

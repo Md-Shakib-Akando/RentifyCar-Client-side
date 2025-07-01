@@ -110,7 +110,7 @@ import Swal from 'sweetalert2';
                                     <input
                                         type="checkbox"
                                         id="remember-me"
-                                        className="h-4 w-4 cursor-pointer text-green-600 focus:ring-green-500 border-gray-300 rounded"
+                                        className="h-4 w-4 cursor-pointer text-orange-500 focus:ring-orange-500  border-gray-300 rounded"
                                     />
                                     <label
                                         htmlFor="remember-me"
@@ -122,7 +122,7 @@ import Swal from 'sweetalert2';
                                 <button
                                     type="button"
                                     
-                                    className="text-sm cursor-pointer text-green-600 hover:text-green-500"
+                                    className="text-sm cursor-pointer text-orange-500 hover:text-orange-500 "
                                 >
                                     Forgot password?
                                 </button>
@@ -130,7 +130,7 @@ import Swal from 'sweetalert2';
 
                             <button
                                 type="submit"
-                                className="w-full cursor-pointer bg-green-600 text-white py-3 rounded-lg hover:bg-green-700"
+                                className="w-full cursor-pointer bg-orange-500  text-white py-3 rounded-lg hover:bg-orange-400 "
                             >
                                 Sign In
                             </button>
@@ -149,7 +149,7 @@ import Swal from 'sweetalert2';
                             <button
                                 type="button"
                                 onClick={handleGoogleLogIn}
-                                className="flex  w-full items-center justify-center px-4 py-3 border border-green-600 text-green-600 rounded-lg hover:bg-green-600 cursor-pointer hover:text-white !rounded-button whitespace-nowrap"
+                                className="flex  w-full items-center justify-center px-4 py-3 border border-orange-500  text-orange-500  rounded-lg hover:bg-orange-500  cursor-pointer hover:text-white !rounded-button whitespace-nowrap"
                             >
                                 <FcGoogle size={32} className='mr-5'></FcGoogle>
                                 Google

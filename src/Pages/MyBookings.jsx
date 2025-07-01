@@ -38,9 +38,9 @@ const MyBookings = () => {
                 .catch(error => console.error('Error fetching bookings:', error));
         }
     }, [user, token]);
-     useEffect(() => {
-            document.title = 'RentifyCars | Bookings';
-        }, [])
+    useEffect(() => {
+        document.title = 'RentifyCars | Bookings';
+    }, [])
     if (loading) {
         return <Loading></Loading>;
     }
@@ -125,7 +125,7 @@ const MyBookings = () => {
                 }
             });
     };
-    
+
 
     return (
         <div className='max-w-11/12 mx-auto'>
@@ -139,7 +139,7 @@ const MyBookings = () => {
                             <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
                             <XAxis dataKey="name" />
                             <YAxis />
-                            <Tooltip />
+                            
                         </LineChart>
                     </ResponsiveContainer>
                 </div>
@@ -147,7 +147,7 @@ const MyBookings = () => {
 
                 <table className="min-w-full my-7 divide-y divide-gray-300">
                     <thead className="bg-base-300">
-                        <tr className=" bg-gray-200">
+                        <tr className=" bg-gray-200 dark:bg-base-200">
                             <th className="px-6 py-7 text-start text-sm font-bold  uppercase tracking-wider">Car Image</th>
                             <th className="px-6 py-7 text-center text-sm font-bold  uppercase tracking-wider">Car Model</th>
                             <th className="px-6 py-7 text-center text-sm font-bold  uppercase tracking-wider">Booking Date</th>
@@ -163,7 +163,7 @@ const MyBookings = () => {
 
                         {
                             bookings.map(book => (
-                                <tr key={book._id} className="odd:bg-white even:bg-gray-100 hover:bg-orange-50 ">
+                                <tr key={book._id} className="odd:bg-white even:bg-gray-100 hover:bg-orange-50 dark:odd:bg-base-100 dark:even:bg-base-100">
                                     <td className="px-6 py-4 whitespace-nowrap">
                                         <div className="flex items-center">
                                             <div className="flex-shrink-0 h-16 w-16 rounded-full overflow-hidden">
@@ -180,7 +180,7 @@ const MyBookings = () => {
 
                                     <td className="px-6 py-4 text-center">{book.EndDate}</td>
                                     <td className="px-6 py-4 text-center">${book.totalPrice}</td>
-                                    <td className="px-6 py-4 text-center ">
+                                    <td className="px-6 py-4 text-center dark:text-base-100">
                                         <p className={`${book.status === 'Canceled'
                                             ? 'bg-red-300 w-fit px-1 rounded-md mx-auto'
                                             : 'bg-green-300 w-fit px-1 rounded-md mx-auto '
@@ -190,11 +190,11 @@ const MyBookings = () => {
                                         <div className="flex justify-center space-x-4">
                                             <button
                                                 onClick={() => handleModifyModal(book)}
-                                                className='btn bg-blue-400 text-white hover:bg-white hover:text-blue-400  '>
+                                                className='btn bg-blue-400 text-white dark:text-base-100 hover:bg-white hover:text-blue-400  '>
                                                 <MdCalendarMonth size={24}></MdCalendarMonth>
                                                 Modify
                                             </button>
-                                            <button onClick={() => handleCancel(book._id)} className='btn bg-red-400 text-white hover:bg-white hover:text-red-400 '>
+                                            <button onClick={() => handleCancel(book._id)} className='btn bg-red-400 text-white dark:text-base-100 hover:bg-white hover:text-red-400 '>
                                                 <MdDelete size={24}></MdDelete>
                                                 Cancel
                                             </button>

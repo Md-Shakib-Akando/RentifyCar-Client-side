@@ -152,7 +152,7 @@ const Register = () => {
                         </div>
                         <button
                             type="submit"
-                            className="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700"
+                            className="w-full bg-orange-500  text-white py-3 rounded-lg hover:bg-orange-400 "
                         >
                             Create Account
                         </button>
@@ -171,7 +171,7 @@ const Register = () => {
                         <button
                             type="button"
                             onClick={handleGoogleRegister}
-                            className="flex  w-full items-center justify-center px-4 py-3 border border-green-600 text-green-600 rounded-lg hover:bg-green-600 cursor-pointer hover:text-white !rounded-button whitespace-nowrap"
+                            className="flex  w-full items-center justify-center px-4 py-3 border border-orange-500  text-orange-500  rounded-lg hover:bg-orange-500  cursor-pointer hover:text-white !rounded-button whitespace-nowrap"
                         >
                             <FcGoogle size={32} className='mr-5'></FcGoogle>
                             Google

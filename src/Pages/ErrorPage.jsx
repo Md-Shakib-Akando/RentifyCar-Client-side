@@ -7,7 +7,7 @@ const ErrorPage = () => {
             document.title = 'RentifyCars | Error';
         }, [])
     return (
-           <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+           <div className="min-h-screen bg-gray-50 dark:bg-base-100 flex items-center justify-center">
         <div className="max-w-2xl mx-auto px-4 text-center">
           <div className="mb-8">
             <img
@@ -17,10 +17,10 @@ const ErrorPage = () => {
             />
           </div>
           
-          <h2 className="text-2xl font-semibold text-gray-700 mb-6">
+          <h2 className="text-2xl font-semibold text-gray-700 dark:text-base-content mb-6">
             Page Not Found
           </h2>
-          <p className="text-gray-600 text-lg mb-8">
+          <p className="text-gray-600 dark:text-gray-300 text-lg mb-8">
             The page you're looking for doesn't exist or has been moved.
           </p>
           

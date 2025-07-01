@@ -13,7 +13,7 @@ const HowIsWork = () => {
 
 
 
-        <section className="py-16 bg-gray-50">
+        <section className="py-16 bg-gray-50 dark:bg-base-200">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <motion.div
                     className="text-center mb-16"
@@ -22,8 +22,8 @@ const HowIsWork = () => {
                     whileInView="animate"
                     viewport={{ once: true }}
                 >
-                    <h2 className="text-3xl font-bold text-gray-900 mb-4">How Is It Works</h2>
-                    <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                    <h2 className="text-3xl font-bold text-gray-900 dark:text-base-content mb-4">How Is It Works</h2>
+                    <p className="text-lg text-gray-600 dark:text-gray-300  max-w-3xl mx-auto">
                         Renting your dream car is just a few simple steps away.
                     </p>
                 </motion.div>
@@ -45,10 +45,10 @@ const HowIsWork = () => {
                             <FaSearch size={28}></FaSearch>
                         </div>
                         <div className="h-1 w-full bg-orange-200 absolute ml-9 top-10 left-1/2 transform -translate-y-1/2 hidden md:block"></div>
-                        <h3 className="text-xl font-bold text-gray-900 mb-3">
+                        <h3 className="text-xl font-bold text-gray-900 dark:text-base-content mb-3">
                             Choose Your Car
                         </h3>
-                        <p className="text-gray-600">
+                        <p className="text-gray-600 dark:text-gray-300 ">
                             Browse our extensive collection of premium vehicles and select
                             your perfect match.
                         </p>
@@ -70,10 +70,10 @@ const HowIsWork = () => {
                             <FaCalendar size={28} ></FaCalendar>
                         </div>
                         <div className="h-1 w-full bg-orange-200 absolute ml-9 top-10 left-1/2 transform -translate-y-1/2 hidden md:block"></div>
-                        <h3 className="text-xl font-bold text-gray-900 mb-3">
+                        <h3 className="text-xl font-bold text-gray-900 dark:text-base-content mb-3">
                             Book Your Dates
                         </h3>
-                        <p className="text-gray-600">
+                        <p className="text-gray-600 dark:text-gray-300 ">
                             Select your pickup and return dates, and complete the booking
                             process securely.
                         </p>
@@ -93,10 +93,10 @@ const HowIsWork = () => {
                         >
                             <FaKey size={28} ></FaKey>
                         </div>
-                        <h3 className="text-xl font-bold text-gray-900 mb-3">
+                        <h3 className="text-xl font-bold text-gray-900 dark:text-base-content mb-3">
                             Get Your Keys
                         </h3>
-                        <p className="text-gray-600">
+                        <p className="text-gray-600 dark:text-gray-300 ">
                             Pick up your car at the designated location and start your
                             luxury driving experience.
                         </p>

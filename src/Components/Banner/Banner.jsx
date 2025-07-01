@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import BannerImg from '../../assets/cars/BannerImg.jpg'
 const Banner = () => {
     return (
-        <section className="relative h-[50vh] md:h-[90vh] w-full overflow-hidden">
+        <section className="relative h-[50vh] md:h-[70vh] w-full overflow-hidden">
            
             <div className="absolute inset-0 bg-[rgba(21,43,59,0.7)] z-10 "></div>
 
@@ -15,7 +15,7 @@ const Banner = () => {
             />
 
            
-            <div className="relative z-90 container mx-auto px-6 h-full flex items-center">
+            <div className="relative z-40 container mx-auto px-6 h-full flex items-center">
                 <div className="max-w-5xl mx-auto">
                     <h1 className="text-xl md:text-4xl  lg:text-6xl font-bold text-white drop-shadow-lg mb-6">
                         Drive Your Dreams Today!
