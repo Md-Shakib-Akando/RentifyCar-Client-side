@@ -47,7 +47,7 @@ const OfferSection = () => {
                         rental.
                     </p>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     {offers.map((car) => (
                         <motion.div
                             key={car._id}
@@ -55,32 +55,32 @@ const OfferSection = () => {
                             whileInView={{ opacity: 1, x: 0 }}
                             transition={{ type: 'spring', stiffness: 100, duration: 0.6 }}
                             viewport={{ once: true, amount: 0.3 }}
-
-                            className="bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer  transform transition duration-300 hover:-translate-y-1 hover:shadow-xl"
+                            className="bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer transform transition duration-300 hover:-translate-y-1 hover:shadow-xl flex flex-col justify-between"
                         >
-                            <div className=" overflow-hidden">
+                            <div className="overflow-hidden">
                                 <img
                                     src={car.imageUrl}
-                                    alt='car'
+                                    alt="car"
                                     className="w-full h-full object-cover object-top"
                                 />
                             </div>
-                            <div className="p-6">
+                            <div className="p-6 ">
                                 <div className="inline-block px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-semibold mb-4">
                                     {getDiscountLabel(car.dailyRentalPrice)}
                                 </div>
                                 <h3 className="text-xl font-bold text-gray-900 mb-2">{car.dailyRentalPrice < 100 ? 'Luxury Experience' : 'Weekend Special'}</h3>
                                 <p className="text-gray-600 mb-4">{getDescription(car.dailyRentalPrice)}</p>
-                                <div className="flex justify-between items-center">
-                                    <p className="text-gray-900 font-bold">From ${car.dailyRentalPrice}/day</p>
-                                    <Link to={`/carDetails/${car._id}`}>
-                                    <button className="bg-gradient-to-r from-orange-500 to-yellow-400 hover:from-orange-600 hover:to-yellow-500 text-white font-semibold text-sm md:text-lg px-5 md:px-8 py-3 rounded-lg shadow-xl transition duration-300  cursor-pointer">
+                            </div>
+                            <div className="flex justify-between items-center mt-auto p-6 pt-0">
+                                <p className="text-gray-900  font-bold">From ${car.dailyRentalPrice}/day</p>
+                                <Link to={`/carDetails/${car._id}`}>
+                                    <button className="bg-gradient-to-r from-orange-500 to-yellow-400 hover:from-orange-600 hover:to-yellow-500 text-white font-semibold text-sm xl:text-lg px-3 md:px-5 py-3 rounded-lg shadow-xl transition duration-300 cursor-pointer">
                                         Book Now
                                     </button>
-                                    </Link>
-                                </div>
+                                </Link>
                             </div>
                         </motion.div>
+
                     ))}
                 </div>
             </div>
