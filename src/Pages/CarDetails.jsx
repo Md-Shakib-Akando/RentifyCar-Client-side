@@ -9,14 +9,14 @@ const CarDetails = () => {
     const data = useLoaderData();
     const { _id } = useParams();
     const details = data.find((singleData) => singleData._id.toString() === _id);
-    const { imageUrl, description, features, availability, dailyRentalPrice, carModel,bookingStatus } = details;
+    const { imageUrl, location, registrationNumber, description, features, availability, dailyRentalPrice, carModel, bookingStatus } = details;
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
     const [totalPrice, setTotalPrice] = useState(0);
 
-     useEffect(() => {
-            document.title = 'RentifyCars | Details';
-        }, [])
+    useEffect(() => {
+        document.title = 'RentifyCars | Details';
+    }, [])
 
     const handleDateChange = (start, end) => {
         setStartDate(start);
@@ -61,7 +61,7 @@ const CarDetails = () => {
             StartDate: format(new Date(startDate), 'dd-MM-yyyy HH:mm'),
             EndDate: format(new Date(endDate), 'dd-MM-yyyy HH:mm'),
             totalPrice,
-            pricePerDay:dailyRentalPrice,
+            pricePerDay: dailyRentalPrice,
             status: bookingStatus,
         };
         fetch(`https://rentify-cars-server-side.vercel.app/booking-cars/${_id}`, {
@@ -86,12 +86,12 @@ const CarDetails = () => {
                         icon: "error",
                         title: "Oops...",
                         text: "Car Booking failed!",
-                        
+
                     });
                     document.getElementById(`modal-${_id}`).close();
                 }
             })
-            
+
 
     }
 
@@ -105,8 +105,12 @@ const CarDetails = () => {
                     <h1 className='text-3xl font-bold mb-5 mt-3 xl:mt-0'>{carModel}</h1>
                     <p className='text-sm md:text-lg font-medium mb-5'>Price Per day : ${dailyRentalPrice}</p>
                     <p className='mb-5 text-lg'>Availability : {availability === "Available" ? <span className='bg-green-500 text-white p-2 rounded-lg'>Available</span> : <span className='bg-red-500 text-white p-2 rounded-lg'>Not Available</span>}</p>
-                    <p className='text-lg font-semibold mb-2'>Features :</p>
-                    <p className='mb-3'>{features}</p>
+                    <p className='text-lg font-semibold mb-2'>Location : <span className='font-normal'>{location}</span></p>
+
+                    <p className='text-lg font-semibold mb-2'>Registration : <span className='font-normal'>{registrationNumber}</span></p>
+
+                    <p className='text-lg font-semibold mb-2'>Features : <span className='font-normal'>{features}</span></p>
+
                     <p className='text-lg font-semibold mv-2'>Description: </p>
                     <p>{description}</p>
                     <div className='mt-5'>
