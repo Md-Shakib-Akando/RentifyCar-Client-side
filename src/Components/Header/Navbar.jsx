@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 
 const Navbar = () => {
     const { user, LogOut } = useContext(AuthContext);
-    
+
     const navigate = useNavigate();
     const handleLogOut = () => {
         LogOut()
@@ -19,7 +19,7 @@ const Navbar = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
-                
+
 
 
                 navigate('/login')
@@ -36,9 +36,11 @@ const Navbar = () => {
                 <li><NavLink to='/addCar' className='text-sm md:text-lg'>Add Car</NavLink></li>
                 <li><NavLink to='/myCars' className='text-sm md:text-lg'>My Cars</NavLink></li>
                 <li><NavLink to='/myBookings' className='text-sm md:text-lg'>My Booking</NavLink></li>
+                <li><NavLink to='/contact' className='text-sm md:text-lg'>Contact-Us</NavLink></li>
             </> : <>
                 <li><NavLink to='/' className='text-sm md:text-lg'>Home</NavLink></li>
                 <li><NavLink to='/availableCars' className='text-sm md:text-lg'>Available Cars</NavLink></li>
+                <li><NavLink to='/contact' className='text-sm md:text-lg'>Contact-Us</NavLink></li>
             </>
         }
     </>
@@ -79,7 +81,7 @@ const Navbar = () => {
 
                 <div className="navbar-end">
                     {
-                        user? (<div className='flex gap-1'>
+                        user ? (<div className='flex gap-1'>
                             {
                                 user.photoURL ? <img
                                     src={user.photoURL}

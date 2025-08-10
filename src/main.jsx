@@ -21,60 +21,65 @@ import MyBookings from './Pages/MyBookings.jsx';
 import Loading from './Components/Loading.jsx';
 import CarDetails from './Pages/carDetails.jsx';
 import ErrorPage from './Pages/ErrorPage.jsx';
+import ContactUs from './Pages/ContactUs.jsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    errorElement:<ErrorPage></ErrorPage>,
-    Component:RootLayout,
-    children:[
+    errorElement: <ErrorPage></ErrorPage>,
+    Component: RootLayout,
+    children: [
       {
-        index:true,
-        loader:()=>fetch('https://rentify-cars-server-side.vercel.app/latest-cars'),
+        index: true,
+        loader: () => fetch('https://rentify-cars-server-side.vercel.app/latest-cars'),
         hydrateFallbackElement: <Loading></Loading>,
-        Component:Home,
+        Component: Home,
       },
       {
-        path:'availableCars',
-        Component:AvailableCars,
+        path: 'availableCars',
+        Component: AvailableCars,
       },
       {
-        path:'login',
+        path: 'contact',
+        Component: ContactUs,
+      },
+      {
+        path: 'login',
         Component: Login,
       },
       {
-        path:'register',
+        path: 'register',
         Component: Register,
       },
       {
-        path:'myCars',
-     
-        element:(
+        path: 'myCars',
+
+        element: (
           <PrivateRoute><MyCars></MyCars></PrivateRoute>
         )
-        
+
       },
       {
-        path:'addCar',
-        element:(
+        path: 'addCar',
+        element: (
           <PrivateRoute><AddCar></AddCar></PrivateRoute>
         )
       },
       {
-        path:'myBookings',
-        element:(
+        path: 'myBookings',
+        element: (
           <PrivateRoute><MyBookings></MyBookings></PrivateRoute>
         )
       },
       {
-        path:'/carDetails/:_id',
-        loader:()=>fetch('https://rentify-cars-server-side.vercel.app/cars'),
+        path: '/carDetails/:_id',
+        loader: () => fetch('https://rentify-cars-server-side.vercel.app/cars'),
         hydrateFallbackElement: <Loading></Loading>,
-        element:(
+        element: (
           <PrivateRoute><CarDetails></CarDetails></PrivateRoute>
         )
       }
-      
+
     ]
   },
 ]);
