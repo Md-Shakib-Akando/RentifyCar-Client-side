@@ -3,7 +3,35 @@ import Swal from 'sweetalert2';
 import emailjs from '@emailjs/browser';
 const ContactUs = () => {
 
+    const form = useRef();
 
+    const sendEmail = (e) => {
+        e.preventDefault();
+
+        emailjs
+            .sendForm('service_z7pk6lk', 'template_4mfpzro', form.current, {
+                publicKey: '0xKtJEBU2HsMUg5eI',
+            })
+            .then(
+                () => {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Message sent successfully!',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                    e.target.reset();
+                },
+                (error) => {
+                    console.log('FAILED...', error.text);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Failed to send message.',
+                    });
+                }
+            );
+    };
     return (
         <div className="max-w-11/12 mx-auto p-6 dark:bg-gray-800 ">
             <div className="flex flex-col md:flex-row md:justify-around gap-10 md:my-28">
@@ -39,7 +67,7 @@ const ContactUs = () => {
 
 
                 <div className="md:w-1/2">
-                    <form className="space-y-6">
+                    <form ref={form} onSubmit={sendEmail} className="space-y-6">
 
                         <div>
                             <label htmlFor="name" className="block mb-1 font-medium text-gray-700 dark:text-gray-300">
